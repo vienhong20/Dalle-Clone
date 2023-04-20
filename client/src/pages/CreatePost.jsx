@@ -16,6 +16,10 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [Loading, setLoading] = useState(false);
 
+  const generateImage = () => {
+
+  }
+
   const handleSubmit = () => {
 
   }
@@ -69,7 +73,23 @@ const CreatePost = () => {
                 className="w-9/12 h-9/12 object-contain opacity-40"
               />
             )}
+
+            {generatingImg && (
+              <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">          
+                <Loader />
+              </div>
+            )}
           </div>
+        </div>
+
+        <div className="mt-5 flex gap-5">
+          <button
+            type="button"
+            onClick={generateImage}
+            className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {generatingImg ? 'Generating...' : 'Generate'}
+          </button>
         </div>
       </form>
     </section>
