@@ -19,12 +19,12 @@ const CreatePost = () => {
 
   }
 
-  const handleChange = () => {
+  const handleChange = (e) => {
 
   }
 
   const handleSurpriseMe = () => {
-    
+
   }
 
   return (
