@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Loader, Card, FormField } from'../components' ;
 
 
+
 const RenderCards = ({ data, title }) => {
     if(data?.length > 0) { return data.map((post) => <Card key={post._id} {...post} />)
     }
@@ -14,7 +15,9 @@ const RenderCards = ({ data, title }) => {
 const Home = () => {
     const [loading, setLoading] = useState(false);
     const [allPosts, setAllPosts] = useState(null);
-    const [searchText, setSearchText] = useState(null);
+    const [searchText, setSearchText] = useState('');
+    const [searchedResults, setSearchedResults] = useState(null);
+    const [searchTimeout, setSearchTimeout] = useState(null);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -47,6 +50,8 @@ const Home = () => {
 
         setTimeout(() => {
             const searchResults = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes(searchText.toLowerCase()));
+            
+            setSearchedResults(searchResults);
         }, 500);
     }
 
