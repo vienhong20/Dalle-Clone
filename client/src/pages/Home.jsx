@@ -46,13 +46,16 @@ const Home = () => {
     }, []);
 
     const handleSearchChange = (e) => {
-        setSearchText.apply(e.target.value);
+        clearTimeout(searchTimeout);
 
-        setTimeout(() => {
-            const searchResults = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes(searchText.toLowerCase()));
-            
-            setSearchedResults(searchResults);
-        }, 500);
+        setSearchText(e.target.value);
+
+        setSearchTimeout(
+            setTimeout(() => {
+                const searchResults = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase()) || item.prompt.toLowerCase().includes(searchText.toLowerCase()));  
+                setSearchedResults(searchResults);
+            }, 500)
+        );
     }
 
   return (
